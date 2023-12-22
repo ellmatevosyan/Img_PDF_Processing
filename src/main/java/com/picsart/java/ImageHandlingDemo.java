@@ -1,7 +1,5 @@
 package com.picsart.java;
 
-
-
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -22,10 +20,7 @@ public class ImageHandlingDemo {
 
         BufferedImage image = null;
         image= readFromFile(width,height,image);
-
         addText(image);
-
-
         BufferedImage image2 = writeToFile(image);
         addStampToPdf(image2);
 
@@ -49,9 +44,6 @@ public class ImageHandlingDemo {
 
         try {
             File outputDir = new File("C:\\Users\\DELL\\IdeaProjects\\Img_PDF_Processing\\src\\main\\resources");
-//            if(!outputDir.exists()){
-//                outputDir.mkdir();
-//            }
 
             File outputFile = new File(outputDir,"outputImg.png");
             if(!outputFile.exists()){
@@ -103,21 +95,15 @@ public class ImageHandlingDemo {
                 try(PDPageContentStream contentStream = new PDPageContentStream(document,page, PDPageContentStream.AppendMode.APPEND,true)){
                     float x = 15;
                     float y = 15;
-
-
-                        contentStream.drawImage(imageXObject, x, y);
-
-
+                    contentStream.drawImage(imageXObject, x, y);
                 }
             }
-
-                document.save(outputPdfPath);
-
+            document.save(outputPdfPath);
             System.out.println("Stamped PDF created successfully!");
         }
         }
 
-    }
+}
 
 
 
