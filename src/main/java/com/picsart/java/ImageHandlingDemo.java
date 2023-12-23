@@ -81,16 +81,18 @@ public class ImageHandlingDemo {
     }
 
     public  static void addStampToPdf(BufferedImage stampedImage) throws IOException {
-        String inputPdfPath = "C:\\Users\\DELL\\IdeaProjects\\Img_PDF_Processing\\src\\main\\resources\\document.pdf";
-        String outputPdfPath = "C:\\Users\\DELL\\IdeaProjects\\Img_PDF_Processing\\src\\main\\resources\\out.pdf";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the source pdf path:");
+        String inputPdfPath = scanner.next();
+        System.out.println("Enter the destination pdf path:");
+        String outputPdfPath = scanner.next();
 
         try(PDDocument document = PDDocument.load(new File(inputPdfPath))){
             int pageNum = 0;
             for(PDPage page : document.getPages()){
                 pageNum++;
-
                 PDImageXObject imageXObject = PDImageXObject.createFromFileByContent(
-                        new File("C:\\Users\\DELL\\IdeaProjects\\Img_PDF_Processing\\src\\main\\resources\\outputImg.png"), document);
+                       new File("src/main/resources/outputImg.png"), document);
 
                 try(PDPageContentStream contentStream = new PDPageContentStream(document,page, PDPageContentStream.AppendMode.APPEND,true)){
                     float x = 15;
